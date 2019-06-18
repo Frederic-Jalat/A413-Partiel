@@ -1,7 +1,9 @@
 export default {
     state: {
         alcohol: undefined,
-        alcohols: []
+        alcohols: [],
+        soft : undefined,
+        softs : [],
     },
     mutations: {
         setAlcohol (state, alcohol) {
@@ -9,6 +11,12 @@ export default {
         },
         setAlcohols (state, alcohols) {
             state.alcohols = alcohols
+        },
+        setSoft (state, soft) {
+            state.soft = soft
+        },
+        setSofts (state, softs) {
+            state.softs = softs
         }
     },
     actions: {
@@ -20,7 +28,12 @@ export default {
         sendToRobot ({state}) {
             return axios.post('/order/post', {
                 alcohol: state.alcohol,
-                soft: undefined
+                soft: state.soft,
+            })
+        },
+        loadSofts (context) {
+            axios.get('/softs').then(res => {
+                context.commit('setSofts', res.data)
             })
         }
     },
@@ -30,6 +43,12 @@ export default {
         },
         alcohols: state => {
             return state.alcohols
+        },
+        soft: state => {
+            return state.soft
+        },
+        softs: state => {
+            return state.softs
         }
     }
 }
