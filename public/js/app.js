@@ -1860,7 +1860,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$router.push('/alcohol');
     },
     goToSoft: function goToSoft() {
-      this.$router.push('/softs');
+      this.$router.push('/soft');
     }
   }
 });
